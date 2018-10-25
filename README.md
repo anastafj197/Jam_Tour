@@ -6,5 +6,5 @@ Will hopefully (if legal) be scraping data from jamBase.com
 Features:  
 Where & When: Will my favorite artists be playing  
 Tickets: Cost & Purchase options   
-Interactive map of USA:  Highlightable states upon attendance preferances  
+Interactive map of USA:  Highlightable states upon attendance preferences  
 
