@@ -27,6 +27,14 @@ bands = [
 		"widespread-panic",
 		]
 
+# festivals 
+festi = [
+		"camp-bisco",
+		"summer-camp",
+		"lockn",
+		"high-siera",
+		]
+
 # urls to visit 
 urls = []
 
