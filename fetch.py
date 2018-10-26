@@ -27,9 +27,13 @@ bands = [
 		"widespread-panic",
 		]
 
+# urls to visit 
+urls = []
+
 # check if urls are being appended properly
 for band in bands:
 	url = base_url + band
-	print(url)
+	urls.append(url)
 	url = base_url
  
+print(urls)
