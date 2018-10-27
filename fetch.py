@@ -65,10 +65,6 @@ class State(object):
 		self. abv = abv 
 		self.selected = False 
 
-	def make_state(name, abv, selected):
-		state = State(name, abv, selected)
-		return state
-
 	state_dict = {}
 
 	states = [
@@ -99,7 +95,7 @@ class State(object):
 	# attempting to make a new state obj for each state 
 	ix = 0 
 	for state in states:		
-		state_dict[states[ix]] = make_state(states[ix], abvs[ix], False)
+		state_dict[states[ix]] = State(states[ix], abvs[ix], False)
 		index += 1 
 
 	print(state_dict)
