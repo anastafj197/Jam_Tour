@@ -6,8 +6,8 @@
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup 
 
-html = urlopen("https://www.jambase.com/band/moe")
-bsObj = BeautifulSoup(html, "lxml")
+#html = urlopen("https://www.jambase.com/band/moe")
+#bsObj = BeautifulSoup(html, "lxml")
 
 class fetch:
 
@@ -56,19 +56,20 @@ class fetch:
 		url = base_url
  
 	print(urls)
+	print()
 
-class State:
+class State(object):
 	# May add on region in constructor 
-	def _init_(name, abv, selected):
+	def _init_(self, name, abv, selected):
+		self.name = name 
+		self. abv = abv 
+		self.selected = False 
 
-	name = ""
+	def make_state(name, abv, selected):
+		state = State(name, abv, selected)
+		return state
 
-	# attempting to make a new state obj for each state 
-	index = 0 
-	for state in states:
-
-		State(states[index], abvs[index], false)
-		index += 1 
+	state_dict = {}
 
 	states = [
 			"Alabama", "Alaska", "Arizona", "Arkansas", 
@@ -94,3 +95,11 @@ class State:
 			"OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
 			"VT", "VA", "WA", "WV", "WI", "WY"
 			]
+
+	# attempting to make a new state obj for each state 
+	ix = 0 
+	for state in states:		
+		state_dict[states[ix]] = make_state(states[ix], abvs[ix], False)
+		index += 1 
+
+	print(state_dict)
