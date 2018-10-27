@@ -3,6 +3,12 @@
 
 # Fetching data from jamBase.com 
 
+from urllib.request import urlopen 
+from bs4 import BeautifulSoup 
+
+html = urlopen("https://www.jambase.com/band/moe")
+bsObj = BeautifulSoup(html, "lxml")
+
 class fetch:
 
 	base_url = "https://www.jambase.com/band/"
@@ -51,8 +57,18 @@ class fetch:
  
 	print(urls)
 
-class state:
-	def _init_(name, abv, region, selected):
+class State:
+	# May add on region in constructor 
+	def _init_(name, abv, selected):
+
+	name = ""
+
+	# attempting to make a new state obj for each state 
+	index = 0 
+	for state in states:
+
+		State(states[index], abvs[index], false)
+		index += 1 
 
 	states = [
 			"Alabama", "Alaska", "Arizona", "Arkansas", 
