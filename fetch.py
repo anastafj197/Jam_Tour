@@ -1,4 +1,8 @@
+# Referance for the interactive state map 
+# https://www.amcharts.com/visited_states/#
+
 # Fetching data from jamBase.com 
+
 class fetch:
 
 	base_url = "https://www.jambase.com/band/"
@@ -65,12 +69,12 @@ class state:
 			"Texas", "Utah", "Vermont", "Virginia", "Washington",
 			"West Virginia", "Wisconsin", "Wyoming"
 			 ]
-			 
+
 	abvs =  [
-			"AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE",
-			"FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY",
-			"LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT",
-			"NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH",
+			"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+			"FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+			"LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
+			"NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
 			"OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
-			"VA", "VT", "WA", "WI", "WV", "WY"
+			"VT", "VA", "WA", "WV", "WI", "WY"
 			]
