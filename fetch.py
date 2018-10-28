@@ -6,8 +6,11 @@
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup 
 
+import pprint 
+
 #html = urlopen("https://www.jambase.com/band/moe")
 #bsObj = BeautifulSoup(html, "lxml")
+
 
 def fetch():
 
@@ -60,10 +63,13 @@ def fetch():
 
 class State:
 	# May add on region in constructor 
-	def _init_(self, name, abv, selected):
+	def __init__(self, name, abv, selected):
 		self.name = name 
 		self. abv = abv 
 		self.selected = False 
+
+	def __repr__( self ):
+		return "" + self.name + ", " + self.abv + ", " + str(self.selected)
 
 state_dict = {}
 
@@ -96,6 +102,6 @@ abvs =  [
 ix = 0 
 for state in states:		
 	state_dict[states[ix]] = State(states[ix], abvs[ix], False)
-	index += 1 
+	ix += 1 
 
-print(state_dict)
+pprint.pprint(state_dict)
