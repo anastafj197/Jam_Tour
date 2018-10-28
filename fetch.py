@@ -1,14 +1,15 @@
 # Referance for the interactive state map 
 # https://www.amcharts.com/visited_states/#
 
-# Fetching data from jamBase.com 
+# Must find new database to fetch from 
+# JamBase does not like scrapers  
 
 from urllib.request import urlopen 
 from bs4 import BeautifulSoup 
 
 import pprint 
 
-#html = urlopen("https://www.jambase.com/band/moe")
+#html = urlopen("?")
 #bsObj = BeautifulSoup(html, "lxml")
 
 
@@ -67,7 +68,7 @@ class State:
 		self.name = name 
 		self. abv = abv 
 		self.selected = False 
-
+	# toString 
 	def __repr__( self ):
 		return "" + self.name + ", " + self.abv + ", " + str(self.selected)
 
@@ -98,7 +99,8 @@ abvs =  [
 		"VT", "VA", "WA", "WV", "WI", "WY"
 		]
 
-# attempting to make a new state obj for each state 
+# Filling a dictionary with state objects 
+# Referancable by thier name 
 ix = 0 
 for state in states:		
 	state_dict[states[ix]] = State(states[ix], abvs[ix], False)
