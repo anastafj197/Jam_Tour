@@ -109,6 +109,10 @@ def fill_dict():
 
 	pprint.pprint(state_dict)
 
+# this won't be run when imported
+#if __name__ == "__main__":
+#	main()
+
 def main():
 	fetch()
 	fill_dict()
