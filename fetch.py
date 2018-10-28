@@ -12,12 +12,11 @@ import pprint
 #html = urlopen("?")
 #bsObj = BeautifulSoup(html, "lxml")
 
-
 def fetch():
 
 	base_url = "https://www.jambase.com/band/"
 
-	# band names to match jamBases urls 
+	# band names may need to be formatted differently 
 	bands = [
 			"dark-star-orchestra",
 			"dead-company",
@@ -101,9 +100,17 @@ abvs =  [
 
 # Filling a dictionary with state objects 
 # Referancable by thier name 
-ix = 0 
-for state in states:		
-	state_dict[states[ix]] = State(states[ix], abvs[ix], False)
-	ix += 1 
+def fill_dict():
 
-pprint.pprint(state_dict)
+	ix = 0 
+	for state in states:		
+		state_dict[states[ix]] = State(states[ix], abvs[ix], False)
+		ix += 1 
+
+	pprint.pprint(state_dict)
+
+def main():
+	fetch()
+	fill_dict()
+
+main()
