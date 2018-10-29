@@ -7,8 +7,6 @@ master = Tk()
 
 def highlight(button):
 
-	print(button['text'])
-
 	# if selected is false turn true 
 	# must referance the buttons name 
 	# compare against the state_dict 
@@ -17,17 +15,11 @@ def highlight(button):
 	if state_dict[button['text']].selected == False:
 		state_dict[button['text']].selected = True 
 		button.configure(bg = "steel blue")
-		print("T")
+		#print("T")
 	else:
 		state_dict[button['text']].selected = False 
 		button.configure(bg = "grey")
-		print("F")
-
-# Accepts Tk object, btn name, and function 
-#button = Button(master, text = "State", command = highlight)
-
-# Need to pack every button made 
-#button.pack()
+		#print("F")
 
 btn_dict = {}
 
@@ -41,9 +33,6 @@ def fill_btn_dict():
 
 		btn_dict[state] = obj
 		btn_dict[state].pack()
-
-		#print(state)
-
 
 fill_btn_dict()
 
