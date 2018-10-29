@@ -6,7 +6,7 @@ from tkinter import *
 master = Tk()
 
 def highlight():
-	exit()
+	btn_dict[state].configure(bg = "steel blue")
 
 # Accepts Tk object, btn name, and function 
 #button = Button(master, text = "State", command = highlight)
@@ -21,8 +21,9 @@ btn_dict = {}
 def fill_btn_dict():
 
 	for state in state_dict: 
-		btn_dict[state] = Button(master, text = state, command = highlight)
+		btn_dict[state] = Button(master, text = state, command = highlight, bg = "grey")
 		btn_dict[state].pack()
+
 		print(state)
 
 fill_btn_dict()
