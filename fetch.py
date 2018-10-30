@@ -47,6 +47,8 @@ def fetch():
 			"summer-camp",
 			"lockn",
 			"high-siera",
+			"mountain-jam",
+			"gathering-of-the-vibes"
 			]
 
 	# urls to visit 
