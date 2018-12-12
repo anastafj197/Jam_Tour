@@ -1,3 +1,6 @@
+#https://stackoverflow.com/questions/42579927/rounded-button-tkinter-python
+#state shaped buttons 
+
 import fetch
 
 from fetch import state_dict
@@ -26,13 +29,19 @@ btn_dict = {}
 # Insert btns into a dictionary of buttons with 
 # corresponding state names attached 
 def fill_btn_dict():
-
+	x = 0
+	y = 0
 	for state in state_dict: 
 		obj=Button(master, text=state, bg = "grey")
 		obj.configure(command=lambda button=obj: highlight(button))
 
 		btn_dict[state] = obj
-		btn_dict[state].pack()
+		btn_dict[state].grid(row=x, column=y)
+
+		x += 1
+		if x == 5:
+			y += 1
+			x = 0
 
 fill_btn_dict()
 
