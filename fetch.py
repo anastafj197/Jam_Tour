@@ -43,10 +43,10 @@ def fetch():
 
 	# festivals 
 	festi = [
-			"camp-bisco",
-			"summer-camp",
 			"lockn",
+			"camp-bisco",
 			"high-siera",
+			"summer-camp",
 			"mountain-jam",
 			"gathering-of-the-vibes"
 			]
@@ -65,10 +65,12 @@ def fetch():
 
 class State:
 	# May add on region in constructor 
-	def __init__(self, name, abv, selected):
+	def __init__(self, name, abv, selected, region):
 		self.name = name 
-		self. abv = abv 
+		self.abv = abv 
 		self.selected = False 
+		self.region = region
+
 	# toString 
 	def __repr__( self ):
 		return "" + self.name + ", " + self.abv + ", " + str(self.selected)
@@ -78,7 +80,7 @@ state_dict = {}
 states = [
 		"Alabama", "Alaska", "Arizona", "Arkansas", 
 		"California", "Colorado", "Connecticut", 
-		"Delaware", "District of Columbia", "Florida", 
+		"Delaware", "Florida", 
 		"Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
 		"Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
 		"Maryland", "Massachusetts", "Michigan", "Minnesota",
@@ -92,7 +94,7 @@ states = [
 		 ]
 
 abvs =  [
-		"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+		"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", 
 		"FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
 		"LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
 		"NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
@@ -100,16 +102,27 @@ abvs =  [
 		"VT", "VA", "WA", "WV", "WI", "WY"
 		]
 
+regions = [
+		  "Northeast",
+		  "Southeast",
+		  "Midwest",
+		  "Southwest",
+		  "West"
+		  ]
+
 # Filling a dictionary with state objects 
 # Referancable by thier name 
 def fill_dict():
 
 	ix = 0 
 	for state in states:		
-		state_dict[states[ix]] = State(states[ix], abvs[ix], False)
+		state_dict[states[ix]] = State(states[ix], abvs[ix], False, "none")
 		ix += 1 
 
 	pprint.pprint(state_dict)
+
+def fill_region():
+	return 0
 
 # this won't be run when imported
 #if __name__ == "__main__":
