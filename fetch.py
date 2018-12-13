@@ -65,11 +65,11 @@ def fetch():
 
 class State:
 	# May add on region in constructor 
-	def __init__(self, name, abv, selected, region):
+	def __init__(self, name, abv, selected, division):
 		self.name = name 
 		self.abv = abv 
 		self.selected = False 
-		self.region = region
+		self.division = division
 
 	# toString 
 	def __repr__( self ):
@@ -103,11 +103,15 @@ abvs =  [
 		]
 
 regions = [
-		  "Northeast",
-		  "Southeast",
-		  "Midwest",
-		  "Southwest",
-		  "West"
+		  "New England",
+		  "Mid-Atlantic",
+		  "East North Central",
+		  "West North Central",
+		  "South Atlantic",
+		  "East South Central",
+		  "West South Central",
+		  "Mountain",
+		  "Pacific"
 		  ]
 
 # Filling a dictionary with state objects 
@@ -121,8 +125,23 @@ def fill_dict():
 
 	pprint.pprint(state_dict)
 
-def fill_region():
-	return 0
+def fill_division():
+	
+	new_england        = ["Connecticut", "Maine", "Massachusetts", "New Hampshire",
+	 					  "Rhode Island", "Vermont"] 
+	mid_atlantic       = ["New Jersey", "New York", "Pennsylvania"]
+	east_north_central = ["Illinois", "Indiana", "Michigan", "Ohio", "Wisconsin"]
+	west_north_central = ["Iowa", "Kansas", "Minnesota", "Missouri", "Nebraska", 
+						  "North Dakota", "South Dakota"]
+	south_atlantic     = ["Delaware", "Florida", "Georgia", "Maryland", "North Carolina", 
+						  "South Carolina", "Virginia", "West Virginia"]
+	east_south_central = ["Alabama", "Kentucky", "Mississippi", "Tennessee"] 
+	west_south_central = ["Arkansas", "Louisiana", "Oklahoma", "Texas"]
+	mountain           = ["Arizona", "Colorado", "Idaho", "Montana", "Nevada", "New Mexico", 
+	 					  "Utah", "Wyoming"]
+	pacific            = ["Alaska", "California", "Hawaii", "Oregon", "Washington"]
+
+
 
 # this won't be run when imported
 #if __name__ == "__main__":
@@ -131,5 +150,6 @@ def fill_region():
 def main():
 	fetch()
 	fill_dict()
+	fill_division()
 
 main()
