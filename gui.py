@@ -22,26 +22,99 @@ def highlight(button):
 	else:
 		state_dict[button['text']].selected = False 
 		button.configure(bg = "grey")
-		#print("F")
+
 
 btn_dict = {}
 
 # Insert btns into a dictionary of buttons with 
 # corresponding state names attached 
 def fill_btn_dict():
-	x = 0
+	
 	y = 0
+	x0,x1,x2,x3,x4,x5,x6,x7,x8 = (0,)*9
+	
 	for state in state_dict: 
-		obj=Button(master, text=state, bg = "grey")
-		obj.configure(command=lambda button=obj: highlight(button))
 
-		btn_dict[state] = obj
-		btn_dict[state].grid(row=x, column=y)
+		if state_dict[state].division == "New England":
+			
+			y = 0
+			obj=Button(master, text=state, bg = "coral")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x0, column=y)
+			x0 += 1
 
-		x += 1
-		if x == 5:
-			y += 1
-			x = 0
+		elif state_dict[state].division == "Mid-Atlantic":
+
+			y = 1
+			obj=Button(master, text=state, bg = "gold")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x1, column=y)
+			x1 += 1
+
+		elif state_dict[state].division == "East North Central":
+
+			y = 2
+			obj=Button(master, text=state, bg = "greenyellow")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x2, column=y)
+			x2 += 1
+
+		elif state_dict[state].division == "West North Central":
+
+			y = 3
+			obj=Button(master, text=state, bg = "forestgreen")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x3, column=y)
+			x3 += 1
+
+		elif state_dict[state].division == "South Atlantic":
+
+			y = 4
+			obj=Button(master, text=state, bg = "mediumturquoise")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x4, column=y)
+			x4 += 1
+
+		elif state_dict[state].division == "East South Central":
+
+			y = 5
+			obj=Button(master, text=state, bg = "dodgerblue")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x5, column=y)
+			x5 += 1
+
+		elif state_dict[state].division == "West South Central":
+
+			y = 6
+			obj=Button(master, text=state, bg = "mediumslateblue")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x6, column=y)
+			x6 += 1
+
+		elif state_dict[state].division == "Mountain":
+
+			y = 7
+			obj=Button(master, text=state, bg = "orchid")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x7, column=y)
+			x7 += 1
+
+		elif state_dict[state].division == "Pacific":
+
+			y = 8
+			obj=Button(master, text=state, bg = "lightpink")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x8, column=y)
+			x8 += 1
 
 fill_btn_dict()
 
