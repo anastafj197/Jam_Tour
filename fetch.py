@@ -73,7 +73,7 @@ class State:
 
 	# toString 
 	def __repr__( self ):
-		return "" + self.name + ", " + self.abv + ", " + str(self.selected)
+		return "" + self.name + ", " + self.abv + ", " + str(self.selected) + ", " + self.division
 
 state_dict = {}
 
@@ -102,7 +102,7 @@ abvs =  [
 		"VT", "VA", "WA", "WV", "WI", "WY"
 		]
 
-regions = [
+divisions = [
 		  "New England",
 		  "Mid-Atlantic",
 		  "East North Central",
@@ -125,8 +125,10 @@ def fill_dict():
 
 	pprint.pprint(state_dict)
 
+# Applies a division to each state object in the state_dict 
 def fill_division():
 	
+	# Divided states into regional divisions 
 	new_england        = ["Connecticut", "Maine", "Massachusetts", "New Hampshire",
 	 					  "Rhode Island", "Vermont"] 
 	mid_atlantic       = ["New Jersey", "New York", "Pennsylvania"]
@@ -141,7 +143,25 @@ def fill_division():
 	 					  "Utah", "Wyoming"]
 	pacific            = ["Alaska", "California", "Hawaii", "Oregon", "Washington"]
 
-
+	for state in states:
+		if state in new_england:
+			state_dict[state].division = divisions[0]
+		elif state in mid_atlantic:
+			state_dict[state].division = divisions[1]
+		elif state in east_north_central:
+			state_dict[state].division = divisions[2]
+		elif state in west_north_central:
+			state_dict[state].division = divisions[3]
+		elif state in south_atlantic:
+			state_dict[state].division = divisions[4]
+		elif state in east_south_central:
+			state_dict[state].division = divisions[5]
+		elif state in west_south_central:
+			state_dict[state].division = divisions[6]
+		elif state in mountain:
+			state_dict[state].division = divisions[7]
+		else: 
+			state_dict[state].division = divisions[8]
 
 # this won't be run when imported
 #if __name__ == "__main__":
