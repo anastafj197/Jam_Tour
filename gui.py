@@ -4,6 +4,8 @@
 import fetch
 
 from fetch import state_dict
+from fetch import bands
+
 from tkinter import *
 
 master = Tk()
@@ -18,7 +20,7 @@ def highlight(button):
 	if state_dict[button['text']].selected == False:
 		state_dict[button['text']].selected = True 
 		button.configure(bg = "steel blue")
-		#print("T")
+
 	else:
 		state_dict[button['text']].selected = False 
 		button.configure(bg = "grey")
@@ -28,6 +30,7 @@ btn_dict = {}
 
 # Insert btns into a dictionary of buttons with 
 # corresponding state names attached 
+# seperate & color code by division 
 def fill_btn_dict():
 	
 	y = 0
@@ -35,8 +38,9 @@ def fill_btn_dict():
 	
 	for state in state_dict: 
 
-		if state_dict[state].division == "New England":
-			
+		div = state_dict[state].division
+
+		if div == "New England":		
 			y = 0
 			obj=Button(master, text=state, bg = "coral")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -44,8 +48,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x0, column=y)
 			x0 += 1
 
-		elif state_dict[state].division == "Mid-Atlantic":
-
+		elif div == "Mid-Atlantic":
 			y = 1
 			obj=Button(master, text=state, bg = "gold")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -53,8 +56,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x1, column=y)
 			x1 += 1
 
-		elif state_dict[state].division == "East North Central":
-
+		elif div == "East North Central":
 			y = 2
 			obj=Button(master, text=state, bg = "greenyellow")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -62,8 +64,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x2, column=y)
 			x2 += 1
 
-		elif state_dict[state].division == "West North Central":
-
+		elif div == "West North Central":
 			y = 3
 			obj=Button(master, text=state, bg = "forestgreen")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -71,8 +72,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x3, column=y)
 			x3 += 1
 
-		elif state_dict[state].division == "South Atlantic":
-
+		elif div == "South Atlantic":
 			y = 4
 			obj=Button(master, text=state, bg = "mediumturquoise")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -80,8 +80,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x4, column=y)
 			x4 += 1
 
-		elif state_dict[state].division == "East South Central":
-
+		elif div == "East South Central":
 			y = 5
 			obj=Button(master, text=state, bg = "dodgerblue")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -89,8 +88,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x5, column=y)
 			x5 += 1
 
-		elif state_dict[state].division == "West South Central":
-
+		elif div == "West South Central":
 			y = 6
 			obj=Button(master, text=state, bg = "mediumslateblue")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -98,8 +96,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x6, column=y)
 			x6 += 1
 
-		elif state_dict[state].division == "Mountain":
-
+		elif div == "Mountain":
 			y = 7
 			obj=Button(master, text=state, bg = "orchid")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -107,8 +104,7 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x7, column=y)
 			x7 += 1
 
-		elif state_dict[state].division == "Pacific":
-
+		elif div == "Pacific":
 			y = 8
 			obj=Button(master, text=state, bg = "lightpink")
 			obj.configure(command=lambda button=obj: highlight(button))
@@ -116,6 +112,15 @@ def fill_btn_dict():
 			btn_dict[state].grid(row=x8, column=y)
 			x8 += 1
 
-fill_btn_dict()
+def band_list():
+	x = 0
+	for band in bands:
+		obj=Button(master, text=band, bg = "lavender")
+		obj.configure(command=lambda button=obj: highlight(button))
+		obj.grid(row=x, column=10)
+		x += 1
+		#print(band)
 
+fill_btn_dict()
+band_list()
 mainloop()
