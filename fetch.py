@@ -1,175 +1,126 @@
-# Referance for the interactive state map 
-# https://www.amcharts.com/visited_states/#
+#https://stackoverflow.com/questions/42579927/rounded-button-tkinter-python
+#state shaped buttons 
 
-# Must find new database to fetch from 
-# JamBase does not like scrapers  
+import fetch
 
-from urllib.request import urlopen 
-from bs4 import BeautifulSoup 
+from fetch import state_dict
+from fetch import bands
 
-import pprint 
+from tkinter import *
 
-#html = urlopen("?")
-#bsObj = BeautifulSoup(html, "lxml")
+master = Tk()
 
-def fetch():
+def highlight(button):
 
-	base_url = "https://www.jambase.com/band/"
+	# if selected is false turn true 
+	# must referance the buttons name 
+	# compare against the state_dict 
 
-	# band names may need to be formatted differently 
-	bands = [
-			"dark-star-orchestra",
-			"dead-company",
-			"dopapod",
-			"joe-russos-almost-dead",
-			"lotus",
-			"lettus",
-			"max-creek",
-			"moe",
-			"phil-lesh-friends",
-			"phish",
-			"pigeons-playing-ping-pong",
-			"tedeschi-trucks-band",
-			"the-disco-biscuits",
-			"the-motet",
-			"the-string-cheese-incident",
-			"the-werks",
-			"trey-anastasio-band",
-			"turkuaz",
-			"twiddle",
-			"umphreys-mcgee",
-			"widespread-panic",
-			]
+	# Switch for selected boolean 
+	if state_dict[button['text']].selected == False:
+		state_dict[button['text']].selected = True 
+		button.configure(bg = "steel blue")
 
-	# festivals 
-	festi = [
-			"lockn",
-			"camp-bisco",
-			"high-siera",
-			"summer-camp",
-			"mountain-jam",
-			"gathering-of-the-vibes"
-			]
+	else:
+		state_dict[button['text']].selected = False 
+		button.configure(bg = "grey")
 
-	# urls to visit 
-	urls = []
 
-	# check if urls are being appended properly
-	for band in bands:
-		url = base_url + band
-		urls.append(url)
-		url = base_url
- 
-	print(urls)
-	print()
+btn_dict = {}
 
-class State:
-	# May add on region in constructor 
-	def __init__(self, name, abv, selected, division):
-		self.name = name 
-		self.abv = abv 
-		self.selected = False 
-		self.division = division
-
-	# toString 
-	def __repr__( self ):
-		return "" + self.name + ", " + self.abv + ", " + str(self.selected) + ", " + self.division
-
-state_dict = {}
-
-states = [
-		"Alabama", "Alaska", "Arizona", "Arkansas", 
-		"California", "Colorado", "Connecticut", 
-		"Delaware", "Florida", 
-		"Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
-		"Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
-		"Maryland", "Massachusetts", "Michigan", "Minnesota",
-		"Mississippi", "Missouri", "Montana", "Nebraska",
-		"Nevada", "New Hampshire", "New Jersey", "New Mexico",
-		"New York", "North Carolina", "North Dakota", "Ohio",
-		"Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
-		"South Carolina", "South Dakota", "Tennessee",
-		"Texas", "Utah", "Vermont", "Virginia", "Washington",
-		"West Virginia", "Wisconsin", "Wyoming"
-		 ]
-
-abvs =  [
-		"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", 
-		"FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
-		"LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
-		"NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
-		"OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT",
-		"VT", "VA", "WA", "WV", "WI", "WY"
-		]
-
-divisions = [
-		  "New England",
-		  "Mid-Atlantic",
-		  "East North Central",
-		  "West North Central",
-		  "South Atlantic",
-		  "East South Central",
-		  "West South Central",
-		  "Mountain",
-		  "Pacific"
-		  ]
-
-# Filling a dictionary with state objects 
-# Referancable by thier name 
-def fill_dict():
-
-	ix = 0 
-	for state in states:		
-		state_dict[states[ix]] = State(states[ix], abvs[ix], False, "none")
-		ix += 1 
-
-	pprint.pprint(state_dict)
-
-# Applies a division to each state object in the state_dict 
-def fill_division():
+# Insert btns into a dictionary of buttons with 
+# corresponding state names attached 
+# seperate & color code by division 
+def fill_btn_dict():
 	
-	# Divided states into regional divisions 
-	new_england        = ["Connecticut", "Maine", "Massachusetts", "New Hampshire",
-	 					  "Rhode Island", "Vermont"] 
-	mid_atlantic       = ["New Jersey", "New York", "Pennsylvania"]
-	east_north_central = ["Illinois", "Indiana", "Michigan", "Ohio", "Wisconsin"]
-	west_north_central = ["Iowa", "Kansas", "Minnesota", "Missouri", "Nebraska", 
-						  "North Dakota", "South Dakota"]
-	south_atlantic     = ["Delaware", "Florida", "Georgia", "Maryland", "North Carolina", 
-						  "South Carolina", "Virginia", "West Virginia"]
-	east_south_central = ["Alabama", "Kentucky", "Mississippi", "Tennessee"] 
-	west_south_central = ["Arkansas", "Louisiana", "Oklahoma", "Texas"]
-	mountain           = ["Arizona", "Colorado", "Idaho", "Montana", "Nevada", "New Mexico", 
-	 					  "Utah", "Wyoming"]
-	pacific            = ["Alaska", "California", "Hawaii", "Oregon", "Washington"]
+	y = 0
+	x0,x1,x2,x3,x4,x5,x6,x7,x8 = (0,)*9
+	
+	for state in state_dict: 
 
-	for state in states:
-		if state in new_england:
-			state_dict[state].division = divisions[0]
-		elif state in mid_atlantic:
-			state_dict[state].division = divisions[1]
-		elif state in east_north_central:
-			state_dict[state].division = divisions[2]
-		elif state in west_north_central:
-			state_dict[state].division = divisions[3]
-		elif state in south_atlantic:
-			state_dict[state].division = divisions[4]
-		elif state in east_south_central:
-			state_dict[state].division = divisions[5]
-		elif state in west_south_central:
-			state_dict[state].division = divisions[6]
-		elif state in mountain:
-			state_dict[state].division = divisions[7]
-		else: 
-			state_dict[state].division = divisions[8]
+		div = state_dict[state].division
 
-# this won't be run when imported
-#if __name__ == "__main__":
-#	main()
+		if div == "New England":		
+			y = 0
+			obj=Button(master, text=state, bg = "coral")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x0, column=y)
+			x0 += 1
 
-def main():
-	fetch()
-	fill_dict()
-	fill_division()
+		elif div == "Mid-Atlantic":
+			y = 1
+			obj=Button(master, text=state, bg = "gold")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x1, column=y)
+			x1 += 1
 
-main()
+		elif div == "East North Central":
+			y = 2
+			obj=Button(master, text=state, bg = "greenyellow")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x2, column=y)
+			x2 += 1
+
+		elif div == "West North Central":
+			y = 3
+			obj=Button(master, text=state, bg = "forestgreen")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x3, column=y)
+			x3 += 1
+
+		elif div == "South Atlantic":
+			y = 4
+			obj=Button(master, text=state, bg = "mediumturquoise")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x4, column=y)
+			x4 += 1
+
+		elif div == "East South Central":
+			y = 5
+			obj=Button(master, text=state, bg = "dodgerblue")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x5, column=y)
+			x5 += 1
+
+		elif div == "West South Central":
+			y = 6
+			obj=Button(master, text=state, bg = "mediumslateblue")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x6, column=y)
+			x6 += 1
+
+		elif div == "Mountain":
+			y = 7
+			obj=Button(master, text=state, bg = "orchid")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x7, column=y)
+			x7 += 1
+
+		elif div == "Pacific":
+			y = 8
+			obj=Button(master, text=state, bg = "lightpink")
+			obj.configure(command=lambda button=obj: highlight(button))
+			btn_dict[state] = obj
+			btn_dict[state].grid(row=x8, column=y)
+			x8 += 1
+
+def band_list():
+	x = 0
+	for band in bands:
+		obj=Button(master, text=band, bg = "lavender")
+		obj.configure(command=lambda button=obj: highlight(button))
+		obj.grid(row=x, column=10)
+		x += 1
+		#print(band)
+
+fill_btn_dict()
+band_list()
+mainloop()
